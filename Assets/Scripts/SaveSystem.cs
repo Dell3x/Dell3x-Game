@@ -7,15 +7,17 @@ public class SaveSystem : MonoBehaviour
 {
     public GameObject namePanel;
 
-    private Save save = new Save();
+    private Save _saveInfo = new Save();
+    
+    public Save SaveInfo{ get{ return _saveInfo;} set{_saveInfo = value; SaveData();}}
 
     private void Start()
     {
         if (!PlayerPrefs.HasKey("Save")) namePanel.SetActive(true);
         else
         {
-            save = JsonUtility.FromJson<Save>(PlayerPrefs.GetString("Save"));
-            Debug.Log("Приветствую " + save.name + "\nКоличество ваших денег: " + save.money);
+            _saveInfo = JsonUtility.FromJson<Save>(PlayerPrefs.GetString("Save"));
+            Debug.Log("Приветствую " + _saveInfo.name + "\nКоличество ваших денег: " + _saveInfo.money);
         }
     }
 
@@ -24,8 +26,8 @@ public class SaveSystem : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(name) && name.Length > 3)
         {
-            save.name = name;
-            Debug.Log("Ваше имя: " + save.name);
+            _saveInfo.name = name;
+            Debug.Log("Ваше имя: " + _saveInfo.name);
         }
         else Debug.Log("Имя должно составлять болле 3-х символов");
     }
@@ -34,16 +36,16 @@ public class SaveSystem : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(money) && money.Length > 0)
         {
-            save.money = int.Parse(money);
-            Debug.Log("Количество денег: " + save.money);
+            _saveInfo.money = int.Parse(money);
+            Debug.Log("Количество денег: " + _saveInfo.money);
         }
         else Debug.Log("На вашем счету нет денег");
     }
 
 
-    private void OnApplicationQuit()
+    private void SaveData()
     {
-        PlayerPrefs.SetString("Save", JsonUtility.ToJson(save));
+        PlayerPrefs.SetString("Save", JsonUtility.ToJson(_saveInfo));
     }
 
 
