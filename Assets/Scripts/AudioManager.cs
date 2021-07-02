@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using Random = UnityEngine.Random;
@@ -25,10 +26,18 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
-
         DontDestroyOnLoad(gameObject);
     }
+    private void Start()
+    {
+        StartCoroutine(LoadSoundsVolume());
+    }
 
+    private IEnumerator LoadSoundsVolume()
+    {
+        yield return new WaitForSeconds(0f);
+        SaveSystem.Instance.LoadSound();
+    }
     public void PlayClickSound()
     {
         clickSound.pitch = Random.Range(0.9f, 1.1f);

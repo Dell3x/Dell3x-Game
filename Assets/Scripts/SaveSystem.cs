@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+[SingularBehaviour(true,false,false)]
+public class SaveSystem : Singleton<SaveSystem>
 {
-    public static SaveSystem instance;
-    
     public GameObject namePanel;
 
     private Save _saveInfo = new Save();
@@ -42,9 +41,21 @@ public class SaveSystem : MonoBehaviour
         else Debug.Log("На вашем счету нет денег");
     }
 
+    public void SaveSound()
+    {
+        _saveInfo.musicSound = AudioManager.instance.musicVolume;
+        _saveInfo.sfxSound = AudioManager.instance.sfxVolume;
+        SaveData();
+    }
     private void SaveData()
     {
         PlayerPrefs.SetString("Save", JsonUtility.ToJson(_saveInfo));
+    }
+
+    public void LoadSound()
+    {
+        AudioManager.instance.MusicMixer.audioMixer.SetFloat("musicVol", _saveInfo.musicSound);
+        AudioManager.instance.SfxMixer.audioMixer.SetFloat("sfxVol", _saveInfo.sfxSound);
     }
 
 

@@ -13,8 +13,8 @@ public class SliderState : MonoBehaviour
 
     public void CheckSlidersValue()
     {
-        musicSlider.value = AudioManager.instance.musicVolume;
-        sfxSlider.value = AudioManager.instance.sfxVolume;
+        musicSlider.value = SaveSystem.Instance.SaveInfo.musicSound;
+        sfxSlider.value = SaveSystem.Instance.SaveInfo.sfxSound;
     }
 
     public void ChangeVFXVol()

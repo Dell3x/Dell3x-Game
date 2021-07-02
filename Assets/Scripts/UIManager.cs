@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public void ClosePauseMenu()
     {
         AudioManager.instance.PlayClickSound();
+        SaveSystem.Instance.SaveSound();
         optionPanel.SetActive(false);
         pauseButton.SetActive(true);
         Time.timeScale = 1;
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseOptionMenu()
     {
+        SaveSystem.Instance.SaveSound();
         optionPanel.SetActive(false);
     }
 
