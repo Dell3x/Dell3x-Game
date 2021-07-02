@@ -11,9 +11,9 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private GameObject pauseButton;
 
-   public void StartButton()
+   public void StartButton(int index)
     {
-        SceneManager.LoadScene(sceneBuildIndex: 1, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneBuildIndex: index, LoadSceneMode.Single);
     }
 
     public void PauseButton()
