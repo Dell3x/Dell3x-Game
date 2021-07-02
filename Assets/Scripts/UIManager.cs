@@ -1,48 +1,46 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Options Panel")] 
     [SerializeField] private GameObject optionPanel;
-    [SerializeField] private GameObject optionTint;
     
     [SerializeField] private GameObject pauseButton;
 
-   public void StartButton(int index)
+   public void LoadLevel(int index)
     {
         SceneManager.LoadScene(sceneBuildIndex: index, LoadSceneMode.Single);
     }
 
-    public void PauseButton()
+    public void OpenPauseMenu()
     {
         optionPanel.SetActive(true);
         pauseButton.SetActive(false);
+        AudioManager.instance.PlayClickSound();
         Time.timeScale = 0;
     }
 
-    public void ResumeButton()
+    public void ClosePauseMenu()
     {
+        AudioManager.instance.PlayClickSound();
         optionPanel.SetActive(false);
         pauseButton.SetActive(true);
         Time.timeScale = 1;
     }
 
-    public void OptionsButton()
+    public void OpenOptionMenu()
     {
         optionPanel.SetActive(true);
-        optionTint.SetActive(true);
     }
 
-    public void OptionsBackButton()
+    public void CloseOptionMenu()
     {
         optionPanel.SetActive(false);
-        optionTint.SetActive(false);
     }
 
-    public void QuitButton()
+    public void ApplicationQuit()
     {
         Application.Quit();
     }

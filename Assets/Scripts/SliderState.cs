@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,10 +16,16 @@ public class SliderState : MonoBehaviour
         musicSlider.value = AudioManager.instance.musicVolume;
         sfxSlider.value = AudioManager.instance.sfxVolume;
     }
-    
+
     public void ChangeVFXVol()
     {
         AudioManager.instance.sfxVolume = sfxSlider.value;
-        AudioManager.instance.SFXMixer.audioMixer.SetFloat("sfxVol", sfxSlider.value);
+        AudioManager.instance.SfxMixer.audioMixer.SetFloat("sfxVol", sfxSlider.value);
+    }
+
+    public void ChangeMusicVol()
+    {
+        AudioManager.instance.musicVolume = musicSlider.value;
+        AudioManager.instance.MusicMixer.audioMixer.SetFloat("musicVol", musicSlider.value);
     }
 }

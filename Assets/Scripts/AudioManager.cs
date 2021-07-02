@@ -15,19 +15,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup musicMixer;
     [SerializeField] private AudioMixerGroup sfxMixer;
 
-    public AudioMixerGroup SFXMixer
-    {
-        get
-        {
-            return sfxMixer;
-        }
-
-        set
-        {
-            sfxMixer = value;
-        }
-    }
-
     private void Awake()
     {
         if (instance != null)
@@ -38,6 +25,7 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -46,6 +34,16 @@ public class AudioManager : MonoBehaviour
         clickSound.pitch = Random.Range(0.9f, 1.1f);
         clickSound.Play();
     }
+    
+    public AudioMixerGroup SfxMixer
+    {
+        get => sfxMixer; 
+        set => sfxMixer = value; 
+    }
 
-  
+    public AudioMixerGroup MusicMixer
+    {
+        get => musicMixer;
+        set => musicMixer = value;
+    }
 }

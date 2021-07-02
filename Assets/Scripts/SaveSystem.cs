@@ -1,10 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
+    public static SaveSystem instance;
+    
     public GameObject namePanel;
 
     private Save _saveInfo = new Save();
@@ -42,7 +42,6 @@ public class SaveSystem : MonoBehaviour
         else Debug.Log("На вашем счету нет денег");
     }
 
-
     private void SaveData()
     {
         PlayerPrefs.SetString("Save", JsonUtility.ToJson(_saveInfo));
@@ -54,5 +53,7 @@ public class SaveSystem : MonoBehaviour
     {
         public string name;
         public int money;
+        public float musicSound;
+        public float sfxSound;
     }
 }
