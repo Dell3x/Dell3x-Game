@@ -10,7 +10,7 @@ public class SaveSystem : Singleton<SaveSystem>
     
     public Save SaveInfo{ get{ return _saveInfo;} set{_saveInfo = value; SaveData();}}
 
-    private void Start()
+    private void Awake()
     {
         if (!PlayerPrefs.HasKey("Save")) namePanel.SetActive(true);
         else
@@ -47,6 +47,7 @@ public class SaveSystem : Singleton<SaveSystem>
         _saveInfo.sfxSound = AudioManager.instance.sfxVolume;
         SaveData();
     }
+    
     private void SaveData()
     {
         PlayerPrefs.SetString("Save", JsonUtility.ToJson(_saveInfo));

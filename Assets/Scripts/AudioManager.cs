@@ -26,28 +26,25 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+
         DontDestroyOnLoad(gameObject);
     }
+
     private void Start()
     {
-        StartCoroutine(LoadSoundsVolume());
-    }
-
-    private IEnumerator LoadSoundsVolume()
-    {
-        yield return new WaitForSeconds(0f);
         SaveSystem.Instance.LoadSound();
     }
+
     public void PlayClickSound()
     {
         clickSound.pitch = Random.Range(0.9f, 1.1f);
         clickSound.Play();
     }
-    
+
     public AudioMixerGroup SfxMixer
     {
-        get => sfxMixer; 
-        set => sfxMixer = value; 
+        get => sfxMixer;
+        set => sfxMixer = value;
     }
 
     public AudioMixerGroup MusicMixer
