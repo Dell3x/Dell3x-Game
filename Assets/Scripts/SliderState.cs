@@ -6,14 +6,12 @@ using UnityEngine.UI;
 
 public class SliderState : MonoBehaviour
 {
-    public static SliderState instance;
-
     public Slider musicSlider;
     public Slider sfxSlider;
 
-    private void Awake()
+    private void Start()
     {
-        instance = this;
+        CheckSlidersValue();
     }
 
     public void CheckSlidersValue()
@@ -24,7 +22,7 @@ public class SliderState : MonoBehaviour
     
     public void ChangeVFXVol()
     {
-        AudioManager.instance.sfxVolume = SliderState.instance.sfxSlider.value;
-        AudioManager.instance.SFXMixer.audioMixer.SetFloat("sfxVol", SliderState.instance.sfxSlider.value);
+        AudioManager.instance.sfxVolume = sfxSlider.value;
+        AudioManager.instance.SFXMixer.audioMixer.SetFloat("sfxVol", sfxSlider.value);
     }
 }

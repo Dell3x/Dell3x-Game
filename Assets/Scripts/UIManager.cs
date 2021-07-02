@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
     {
         optionPanel.SetActive(true);
         pauseButton.SetActive(false);
-        SliderState.instance.CheckSlidersValue();
         Time.timeScale = 0;
     }
 
